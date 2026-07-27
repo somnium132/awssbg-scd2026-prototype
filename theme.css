@@ -5,12 +5,13 @@
    ========================================================= */
 
 :root {
-  /* Accent palette (same in both modes — from event primer) */
-  --blue: #3FA9F5;
-  --purple: #9B5CFF;
-  --orange: #FF9900;
-  --green: #00E28A;
-  --pink: #FF4DE6;
+  /* Accent palette (event primer email header) */
+  --blue: #44b3fe;
+  --purple: #a759ff;
+  --orange: #fc9907;
+  --green: #07e383;
+  --pink: #fe57ea;
+  --ink-block: #161C24;
 
   /* Grid — shared cell size for line grid + colored boxes */
   --grid-size: 52px;
@@ -22,6 +23,8 @@
 
   /* Layout */
   --container: 1280px;
+  --nav-h: calc(var(--grid-size) * 2);
+  --header-h: calc(var(--grid-size) * 4);
 
   /* Transitions */
   --theme-ease: background-color .25s ease, color .25s ease, border-color .25s ease;
@@ -29,7 +32,7 @@
 
 /* ---------- LIGHT MODE (default) ---------- */
 :root,
-[data-theme="light"] {
+html[data-theme="light"] {
   --bg: #FFFFFF;
   --bg-2: #F5F7FB;
   --bg-3: #EEF1F6;
@@ -85,28 +88,29 @@
 }
 
 /* ---------- DARK MODE ---------- */
-[data-theme="dark"] {
+html[data-theme="dark"] {
   --bg: #12182A;
   --bg-2: #1A2138;
   --bg-3: #222B45;
   --bg-elevated: #1A2138;
   --bg-overlay: rgba(18, 24, 42, 0.72);
 
-  --ink: #0B1526;
-  --cloud: #F5F7FB;
+  /* Invert ink/cloud so section-light & about text stay readable */
+  --ink: #F5F7FB;
+  --cloud: #1A2138;
   --text: #F5F7FB;
   --text-strong: #FFFFFF;
-  --muted: #8B96B3;
-  --muted-2: #5B6584;
+  --muted: #A8B0C7;
+  --muted-2: #8B96B3;
 
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.14);
 
   --nav-bg: rgba(18, 24, 42, 0.92);
-  --nav-link: #8B96B3;
+  --nav-link: #A8B0C7;
   --nav-link-active: #FFFFFF;
 
-  --btn-ghost-border: rgba(255, 255, 255, 0.08);
+  --btn-ghost-border: rgba(255, 255, 255, 0.14);
   --btn-ghost-color: #FFFFFF;
   --btn-ghost-hover: var(--blue);
 
@@ -126,13 +130,13 @@
   --footer-link: #C7D0E4;
   --sibling-bg: #1A2138;
 
-  --sponsor-slot-bg: #FFFFFF;
-  --sponsor-slot-border: #C9D3E0;
-  --sponsor-slot-text: #94A2B8;
+  --sponsor-slot-bg: #222B45;
+  --sponsor-slot-border: rgba(255, 255, 255, 0.14);
+  --sponsor-slot-text: #A8B0C7;
 
-  --teal: #0AA98F;
-  --about-text: #3A4661;
-  --about-border: #E1E7F0;
+  --teal: #2BD4AD;
+  --about-text: #C7D0E4;
+  --about-border: rgba(255, 255, 255, 0.1);
 
   --proto-bg: #222B45;
   --sticky-bg: #1A2138;
@@ -154,13 +158,18 @@ html {
 }
 
 body {
-  background: var(--bg);
+  position: relative;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--line) var(--grid-line), transparent var(--grid-line)),
+    linear-gradient(90deg, var(--line) var(--grid-line), transparent var(--grid-line));
+  background-size: var(--grid-size) var(--grid-size);
   color: var(--text);
   font-family: var(--font-sans);
   font-size: 17px;
   line-height: 1.6;
   overflow-x: hidden;
-  padding-bottom: 64px;
+  padding-bottom: calc(var(--grid-size) * 1.25);
   transition: var(--theme-ease);
 }
 
@@ -189,42 +198,126 @@ button {
 .wrap {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 calc(var(--grid-size) * 2);
 }
 
-/* ---------- Grid background (event primer) ---------- */
-.grid-bg {
-  background-color: transparent;
-  background-image:
-    linear-gradient(var(--line) var(--grid-line), transparent var(--grid-line)),
-    linear-gradient(90deg, var(--line) var(--grid-line), transparent var(--grid-line));
-  background-size: var(--grid-size) var(--grid-size);
-}
-
-/* Force light-section grid to stay on light surface colors */
+/* ---------- Grid background (event primer) — body carries the scroll grid ---------- */
+.grid-bg,
 .section-light.grid-bg,
 .grid-bg.light {
-  background-image:
-    linear-gradient(rgba(11, 21, 38, 0.09) var(--grid-line), transparent var(--grid-line)),
-    linear-gradient(90deg, rgba(11, 21, 38, 0.09) var(--grid-line), transparent var(--grid-line));
+  background-color: transparent;
+  background-image: none;
 }
 
-/* Full-page ambient grid behind content */
-.page-grid {
+/* ---------- Fixed site header: AWS logo (2×2) above nav (2×2) ---------- */
+.site-header {
   position: fixed;
-  inset: 0;
-  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: var(--header-h);
+  display: grid;
+  grid-template-rows: var(--nav-h) var(--nav-h);
   pointer-events: none;
-  background-color: var(--bg);
-  background-image:
-    linear-gradient(var(--line) var(--grid-line), transparent var(--grid-line)),
-    linear-gradient(90deg, var(--line) var(--grid-line), transparent var(--grid-line));
-  background-size: var(--grid-size) var(--grid-size);
-  transition: background-color .25s ease;
+}
+
+.nav-aws-logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--nav-h);
+  height: var(--nav-h);
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: auto;
+  z-index: 2;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+}
+
+.site-header.is-scrolled .nav-aws-logo,
+html[data-page="about"] .nav-aws-logo,
+html[data-page="merch"] .nav-aws-logo {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px);
+}
+
+.site-header .nav {
+  pointer-events: auto;
+  align-self: stretch;
+}
+
+/* Primer edge boxes — scroll with page, 1×1 grid cells */
+.primer-edge {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.primer-edge .brand-box {
+  width: var(--grid-size);
+  height: var(--grid-size);
+}
+
+.primer-edge--top .pe-pink {
+  top: 0;
+  left: 0;
+  --box-c: var(--pink);
+}
+
+.primer-edge--top .pe-ink {
+  top: var(--grid-size);
+  left: 0;
+  background: var(--ink-block);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primer-edge--top .pe-ink svg {
+  width: 52%;
+  height: 52%;
+  display: block;
+}
+
+.primer-edge--bottom .pe-blue {
+  bottom: 0;
+  left: 0;
+  --box-c: var(--blue);
+}
+
+.primer-edge--bottom .pe-green {
+  bottom: 0;
+  left: var(--grid-size);
+  --box-c: var(--green);
+}
+
+.primer-edge--bottom .pe-purple {
+  bottom: 0;
+  left: calc(var(--grid-size) * 2);
+  --box-c: var(--purple);
+}
+
+.primer-edge--bottom .pe-orange {
+  bottom: var(--grid-size);
+  right: var(--grid-size);
+  --box-c: var(--orange);
+}
+
+.primer-edge--bottom .pe-purple-end {
+  bottom: 0;
+  right: 0;
+  --box-c: var(--purple);
 }
 
 .page,
-header.nav,
 footer,
 .sticky-cta,
 .modal-overlay,
@@ -235,8 +328,6 @@ footer,
   position: relative;
   z-index: 1;
 }
-
-header.nav { z-index: 200; }
 .mobile-panel { z-index: 190; }
 .modal-overlay { z-index: 300; }
 .sticky-cta { z-index: 150; }
@@ -332,8 +423,8 @@ header.nav { z-index: 200; }
 
 /* ---------- Theme toggle ---------- */
 .theme-toggle {
-  width: 40px;
-  height: 40px;
+  width: calc(var(--grid-size) * 0.85);
+  height: calc(var(--grid-size) * 0.85);
   border-radius: 8px;
   border: 1px solid var(--line);
   background: var(--bg-2);
@@ -360,8 +451,8 @@ header.nav { z-index: 200; }
 .theme-toggle .icon-moon { display: none; }
 .theme-toggle .icon-sun { display: block; }
 
-[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
-[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+html[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+html[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
 
 /* ---------- Chip / AWS mark shared theme bits ---------- */
 .chip {
@@ -375,8 +466,8 @@ header.nav { z-index: 200; }
 
 .brand .chip,
 .nav-inner .chip {
-  width: 40px;
-  height: 40px;
+  width: calc(var(--grid-size) * 0.75);
+  height: calc(var(--grid-size) * 0.75);
 }
 
 .sc-top .chip,
