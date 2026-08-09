@@ -1,717 +1,668 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>AWS Student Community Day: South Summit 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="theme.css">
-<link rel="stylesheet" href="styles.css">
-<script>
-  /* Apply saved theme before paint to avoid flash */
-  (function () {
-    try {
-      var t = localStorage.getItem('scd-theme');
-      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-    } catch (e) {}
-  })();
-</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AWS Student Community Day: South Summit 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    /* Apply saved theme before paint to avoid flash */
+    (function () {
+      try {
+        var t = localStorage.getItem('scd-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) { }
+    })();
+  </script>
 </head>
+
 <body>
 
-<div class="site-header">
-  <img class="nav-aws-logo" src="assets/amazon-aws-logo.png" alt="AWS">
-  <header class="nav" id="siteNav">
-    <div class="nav-inner">
-      <button class="brand" onclick="showPage('home')">
-        <img class="chip" src="awssbg-logo.svg" alt="AWS Student Builder Group">
-        <div class="brand-text">AWS SCD: SS 2026<span>AWS STUDENT BUILDER GROUPS</span></div>
-      </button>
-      <nav class="links">
-        <button class="navbtn active" data-page="home" onclick="showPage('home')">Home</button>
-        <button class="navbtn" data-page="about" onclick="showPage('about')">About</button>
-        <button class="navbtn" data-page="merch" onclick="showPage('merch')">Merch</button>
-      </nav>
-      <div class="nav-cta">
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode" title="Toggle theme">
-          <svg class="icon-sun" aria-hidden="true"><use href="#icon-sun"></use></svg>
-          <svg class="icon-moon" aria-hidden="true"><use href="#icon-moon"></use></svg>
+  <div class="site-header">
+    <img class="nav-aws-logo" src="assets/amazon-aws-logo.png" alt="AWS">
+    <header class="nav" id="siteNav">
+      <div class="nav-inner">
+        <button class="brand" onclick="showPage('home')">
+          <img class="chip" src="awssbg-logo.svg" alt="AWS Student Builder Group">
+          <div class="brand-text">AWS SCD: SS 2026<span>AWS STUDENT BUILDER GROUPS</span></div>
         </button>
-        <a class="btn btn-primary nav-cta-btn" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank" rel="noopener">Register Now</a>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
+        <nav class="links">
+          <button class="navbtn active" data-page="home" onclick="showPage('home')">Home</button>
+          <button class="navbtn" data-page="about" onclick="showPage('about')">About</button>
+          <button class="navbtn" data-page="merch" onclick="showPage('merch')">Merch</button>
+        </nav>
+        <div class="nav-cta">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode"
+            title="Toggle theme">
+            <svg class="icon-sun" aria-hidden="true">
+              <use href="#icon-sun"></use>
+            </svg>
+            <svg class="icon-moon" aria-hidden="true">
+              <use href="#icon-moon"></use>
+            </svg>
+          </button>
+          <a class="btn btn-primary nav-cta-btn" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank"
+            rel="noopener">Register Now</a>
+          <button class="hamburger" id="hamburgerBtn" aria-label="Open menu"
+            aria-expanded="false"><span></span></button>
+        </div>
       </div>
-    </div>
-  </header>
-</div>
-
-<svg class="defs" aria-hidden="true">
-  <symbol id="chip-icon" viewBox="0 0 70 70">
-    <rect width="70" height="70" fill="#161C24"/>
-    <path fill="#44b3fe" fill-rule="evenodd" d="M10 0H20V10H30V0H40V10H50V0H60V10H70V20H60V30H70V40H60V50H70V60H60V70H50V60H40V70H30V60H20V70H10V60H0V50H10V40H0V30H10V20H0V10H10ZM20 20H50V50H20Z"/>
-  </symbol>
-  <symbol id="li-icon" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1s2.5 1.12 2.5 2.5zM.5 8h4V23h-4V8zM8.5 8h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V23h-4V8z"/></symbol>
-  <symbol id="fb-icon" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></symbol>
-  <symbol id="chat-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/></symbol>
-  <symbol id="icon-sun" viewBox="0 0 24 24"><path d="M12 4.5a1 1 0 011 1V7a1 1 0 11-2 0V5.5a1 1 0 011-1zm0 11a3.5 3.5 0 100-7 3.5 3.5 0 000 7zm7.5-3.5a1 1 0 01-1 1H17a1 1 0 110-2h1.5a1 1 0 011 1zM7 12a1 1 0 01-1 1H4.5a1 1 0 110-2H6a1 1 0 011 1zm9.95 5.45a1 1 0 010 1.41l-1.06 1.06a1 1 0 11-1.41-1.41l1.06-1.06a1 1 0 011.41 0zM8.52 7.05a1 1 0 010-1.41L9.58 4.58a1 1 0 011.41 1.41L9.93 7.05a1 1 0 01-1.41 0zM7.05 15.48a1 1 0 00-1.41 0L4.58 16.54a1 1 0 101.41 1.41l1.06-1.06a1 1 0 000-1.41zM16.42 4.58a1 1 0 00-1.41 0L14.0 5.64a1 1 0 001.41 1.41l1.06-1.06a1 1 0 000-1.41zM12 17a1 1 0 011 1v1.5a1 1 0 11-2 0V18a1 1 0 011-1z"/></symbol>
-  <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20.2 14.3A8.5 8.5 0 019.7 3.8a.75.75 0 00-.95-.95A10 10 0 1021.15 15.25a.75.75 0 00-.95-.95z"/></symbol>
-</svg>
-
-<div class="mobile-panel" id="mobilePanel">
-  <button data-page="home" onclick="showPage('home')">Home</button>
-  <button data-page="about" onclick="showPage('about')">About</button>
-  <button data-page="merch" onclick="showPage('merch')">Merch</button>
-  <div class="mobile-theme-row">
-    <span>Appearance</span>
-    <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode" data-theme-toggle>
-      <svg class="icon-sun" aria-hidden="true"><use href="#icon-sun"></use></svg>
-      <svg class="icon-moon" aria-hidden="true"><use href="#icon-moon"></use></svg>
-    </button>
+    </header>
   </div>
-  <a class="btn btn-primary" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank" rel="noopener">Register Now</a>
-</div>
 
-<!-- ================================================================= -->
-<!-- ============================ HOME PAGE =========================== -->
-<!-- ================================================================= -->
-<div class="page active" id="page-home">
+  <svg class="defs" aria-hidden="true">
+    <symbol id="chip-icon" viewBox="0 0 70 70">
+      <rect width="70" height="70" fill="#161C24" />
+      <path fill="#44b3fe" fill-rule="evenodd"
+        d="M10 0H20V10H30V0H40V10H50V0H60V10H70V20H60V30H70V40H60V50H70V60H60V70H50V60H40V70H30V60H20V70H10V60H0V50H10V40H0V30H10V20H0V10H10ZM20 20H50V50H20Z" />
+    </symbol>
+    <symbol id="li-icon" viewBox="0 0 24 24">
+      <path
+        d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1s2.5 1.12 2.5 2.5zM.5 8h4V23h-4V8zM8.5 8h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V23h-4V8z" />
+    </symbol>
+    <symbol id="fb-icon" viewBox="0 0 24 24">
+      <path
+        d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z" />
+    </symbol>
+    <symbol id="chat-icon" viewBox="0 0 24 24">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z" />
+    </symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24">
+      <path
+        d="M12 4.5a1 1 0 011 1V7a1 1 0 11-2 0V5.5a1 1 0 011-1zm0 11a3.5 3.5 0 100-7 3.5 3.5 0 000 7zm7.5-3.5a1 1 0 01-1 1H17a1 1 0 110-2h1.5a1 1 0 011 1zM7 12a1 1 0 01-1 1H4.5a1 1 0 110-2H6a1 1 0 011 1zm9.95 5.45a1 1 0 010 1.41l-1.06 1.06a1 1 0 11-1.41-1.41l1.06-1.06a1 1 0 011.41 0zM8.52 7.05a1 1 0 010-1.41L9.58 4.58a1 1 0 011.41 1.41L9.93 7.05a1 1 0 01-1.41 0zM7.05 15.48a1 1 0 00-1.41 0L4.58 16.54a1 1 0 101.41 1.41l1.06-1.06a1 1 0 000-1.41zM16.42 4.58a1 1 0 00-1.41 0L14.0 5.64a1 1 0 001.41 1.41l1.06-1.06a1 1 0 000-1.41zM12 17a1 1 0 011 1v1.5a1 1 0 11-2 0V18a1 1 0 011-1z" />
+    </symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24">
+      <path d="M20.2 14.3A8.5 8.5 0 019.7 3.8a.75.75 0 00-.95-.95A10 10 0 1021.15 15.25a.75.75 0 00-.95-.95z" />
+    </symbol>
+  </svg>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="primer-edge primer-edge--top" aria-hidden="true">
-      
+  <div class="mobile-panel" id="mobilePanel">
+    <button data-page="home" onclick="showPage('home')">Home</button>
+    <button data-page="about" onclick="showPage('about')">About</button>
+    <button data-page="merch" onclick="showPage('merch')">Merch</button>
+    <div class="mobile-theme-row">
+      <span>Appearance</span>
+      <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode" data-theme-toggle>
+        <svg class="icon-sun" aria-hidden="true">
+          <use href="#icon-sun"></use>
+        </svg>
+        <svg class="icon-moon" aria-hidden="true">
+          <use href="#icon-moon"></use>
+        </svg>
+      </button>
     </div>
-    <div class="deco-layer deco-corners" aria-hidden="true">
-      <span class="brand-box b1"></span>
-      <span class="brand-box b2"></span>
-      <span class="brand-box b3"></span>
-      <span class="brand-box b4"></span>
-      <span class="brand-box b5"></span>
-    </div>
-    <span class="box-floating" aria-hidden="true"></span>
+    <a class="btn btn-primary" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank" rel="noopener">Register
+      Now</a>
+  </div>
 
-    <div class="hero-main">
-      <div class="hero-copy">
-        <p class="eyebrow">AWS Student Community Day: South Summit 2026</p>
-        <h1 class="hero-title">South Summit<br><span class="accent">2026</span></h1>
-        <p class="hero-sub">Cloud × AI: Build. Power. Lead.</p>
-        <p class="hero-desc">A full-day, student-led summit bringing builders, student leaders, and tech advocates from CALABARZON together to explore cloud computing and AI — and to build the confidence to lead with it.</p>
+  <!-- ================================================================= -->
+  <!-- ============================ HOME PAGE =========================== -->
+  <!-- ================================================================= -->
+  <div class="page active" id="page-home">
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank" rel="noopener">Register Now!</a>
-          <button class="btn btn-ghost" onclick="showPage('merch')">Check Out Merch</button>
-        </div>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="primer-edge primer-edge--top" aria-hidden="true">
 
-        <div class="hero-meta">
-          <div><span class="dot"></span> <strong>Oct 7, 2026</strong> · 8:00 AM–5:00 PM</div>
-          <div><span class="dot"></span> Twin venues — Laguna &amp; Batangas</div>
-        </div>
       </div>
+      <div class="deco-layer deco-corners" aria-hidden="true">
+        <span class="brand-box b1"></span>
+        <span class="brand-box b2"></span>
+        <span class="brand-box b3"></span>
+        <span class="brand-box b4"></span>
+        <span class="brand-box b5"></span>
+      </div>
+      <span class="box-floating" aria-hidden="true"></span>
 
-      <div class="hero-graphic-base" aria-label="Event visual">
-        <div class="hero-graphic-content">
-          <div class="aws-mark">
-            <span class="word">aws</span>
-            <svg viewBox="0 0 32 10" fill="none"><path d="M1 2c7 6 23 6 30 0" stroke-width="1.6" stroke-linecap="round"/><path d="M27 1.5l4 .5-1.5 3.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="eyebrow">AWS Student Community Day: South Summit 2026</p>
+          <h1 class="hero-title">South Summit<br><span class="accent">2026</span></h1>
+          <p class="hero-sub">Cloud × AI: Build. Power. Lead.</p>
+          <p class="hero-desc">A full-day, student-led summit bringing builders, student leaders, and tech advocates
+            from CALABARZON together to explore cloud computing and AI — and to build the confidence to lead with it.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank"
+              rel="noopener">Register Now!</a>
+            <button class="btn btn-ghost" onclick="showPage('merch')">Check Out Merch</button>
           </div>
-          <div class="credit-badge">
-            <p>HEADER MAIN IMAGE<br>TEMPLATE · WILL ADD LATER</p>
-            <div class="chip-box"><img class="chip" src="awssbg-logo.svg" alt=""></div>
+
+          <div class="hero-meta">
+            <div><span class="dot"></span> <strong>Oct 7, 2026</strong> · 8:00 AM–5:00 PM</div>
+            <div><span class="dot"></span> Twin venues — Laguna &amp; Batangas</div>
+          </div>
+        </div>
+
+        <div class="hero-graphic-base" aria-label="Event visual">
+          <div class="hero-graphic-content">
+            <div class="aws-mark">
+              <span class="word">aws</span>
+              <svg viewBox="0 0 32 10" fill="none">
+                <path d="M1 2c7 6 23 6 30 0" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M27 1.5l4 .5-1.5 3.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                  fill="none" />
+              </svg>
+            </div>
+            <div class="credit-badge">
+              <p>HEADER MAIN IMAGE<br>TEMPLATE · WILL ADD LATER</p>
+              <div class="chip-box"><img class="chip" src="awssbg-logo.svg" alt=""></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clock" id="countdown" aria-label="Countdown to event">
+          <div class="seg"><b id="cd-days">00</b><small>Days</small></div>
+          <div class="colon">:</div>
+          <div class="seg"><b id="cd-hours">00</b><small>Hrs</small></div>
+          <div class="colon">:</div>
+          <div class="seg"><b id="cd-mins">00</b><small>Min</small></div>
+          <div class="colon">:</div>
+          <div class="seg"><b id="cd-secs">00</b><small>Sec</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPEAKERS -->
+    <section id="speakers">
+      <div class="deco-layer deco-stagger" aria-hidden="true">
+        <span class="brand-box b1"></span>
+        <span class="brand-box b2"></span>
+        <span class="brand-box b3"></span>
+        <span class="brand-box b4"></span>
+        <span class="brand-box b5"></span>
+      </div>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Speakers</p>
+          <h2 class="section-title">Builders taking the stage</h2>
+          <p class="section-p">Lineup in progress — cards below are placeholders and will auto-populate once speakers
+            are confirmed. Click a card to view speaker details.</p>
+        </div>
+      </div>
+      <div class="marquee">
+        <div class="marquee-track" id="marqueeTrack"></div>
+      </div>
+    </section>
+
+    <!-- SPONSORS -->
+    <section id="sponsors" class="section-light grid-bg light">
+      <div class="deco-layer deco-v" aria-hidden="true">
+        <span class="brand-box b1"></span>
+        <span class="brand-box b2"></span>
+        <span class="brand-box b3"></span>
+        <span class="brand-box b4"></span>
+        <span class="brand-box b5"></span>
+      </div>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Sponsors</p>
+          <h2 class="section-title">Powered by our partners</h2>
+        </div>
+        <div class="tier">
+          <div class="tier-label">Platinum</div>
+          <div class="tier-grid platinum">
+            <div class="sponsor-slot">Platinum Sponsor</div>
+            <div class="sponsor-slot">Platinum Sponsor</div>
+          </div>
+        </div>
+        <div class="tier">
+          <div class="tier-label">Gold</div>
+          <div class="tier-grid gold">
+            <div class="sponsor-slot">Gold Sponsor</div>
+            <div class="sponsor-slot">Gold Sponsor</div>
+            <div class="sponsor-slot">Gold Sponsor</div>
+          </div>
+        </div>
+        <div class="tier">
+          <div class="tier-label">Community Partners</div>
+          <div class="tier-grid community">
+            <div class="sponsor-slot">Partner</div>
+            <div class="sponsor-slot">Partner</div>
+            <div class="sponsor-slot">Partner</div>
+            <div class="sponsor-slot">Partner</div>
+            <div class="sponsor-slot">Partner</div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="clock" id="countdown" aria-label="Countdown to event">
-        <div class="seg"><b id="cd-days">00</b><small>Days</small></div>
-        <div class="colon">:</div>
-        <div class="seg"><b id="cd-hours">00</b><small>Hrs</small></div>
-        <div class="colon">:</div>
-        <div class="seg"><b id="cd-mins">00</b><small>Min</small></div>
-        <div class="colon">:</div>
-        <div class="seg"><b id="cd-secs">00</b><small>Sec</small></div>
+    <!-- EVENT DETAILS -->
+    <section id="program">
+      <div class="deco-layer deco-scatter" aria-hidden="true">
+        <span class="brand-box b1"></span>
+        <span class="brand-box b2"></span>
+        <span class="brand-box b3"></span>
+        <span class="brand-box b4"></span>
+        <span class="brand-box b5"></span>
       </div>
-    </div>
-  </section>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow" style="color:var(--purple);">Event Details</p>
+          <h2 class="section-title">The Blueprint</h2>
+          <p class="section-p">The theme runs through the whole day — three motions instead of one track: what you
+            build, what powers it, and how you lead with it. The same agenda runs in parallel at both the Laguna and
+            Batangas venues.</p>
+        </div>
 
-  <!-- SPEAKERS -->
-  <section id="speakers">
-    <div class="deco-layer deco-stagger" aria-hidden="true">
-      <span class="brand-box b1"></span>
-      <span class="brand-box b2"></span>
-      <span class="brand-box b3"></span>
-      <span class="brand-box b4"></span>
-      <span class="brand-box b5"></span>
-    </div>
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Speakers</p>
-        <h2 class="section-title">Builders taking the stage</h2>
-        <p class="section-p">Lineup in progress — cards below are placeholders and will auto-populate once speakers are confirmed. Click a card to view speaker details.</p>
-      </div>
-    </div>
-    <div class="marquee">
-      <div class="marquee-track" id="marqueeTrack"></div>
-    </div>
-  </section>
-
-  <!-- SPONSORS -->
-  <section id="sponsors" class="section-light grid-bg light">
-    <div class="deco-layer deco-v" aria-hidden="true">
-      <span class="brand-box b1"></span>
-      <span class="brand-box b2"></span>
-      <span class="brand-box b3"></span>
-      <span class="brand-box b4"></span>
-      <span class="brand-box b5"></span>
-    </div>
-    <div class="wrap">
-      <div class="section-head"><p class="eyebrow">Sponsors</p><h2 class="section-title">Powered by our partners</h2></div>
-      <div class="tier"><div class="tier-label">Platinum</div><div class="tier-grid platinum"><div class="sponsor-slot">Platinum Sponsor</div><div class="sponsor-slot">Platinum Sponsor</div></div></div>
-      <div class="tier"><div class="tier-label">Gold</div><div class="tier-grid gold"><div class="sponsor-slot">Gold Sponsor</div><div class="sponsor-slot">Gold Sponsor</div><div class="sponsor-slot">Gold Sponsor</div></div></div>
-      <div class="tier"><div class="tier-label">Community Partners</div><div class="tier-grid community"><div class="sponsor-slot">Partner</div><div class="sponsor-slot">Partner</div><div class="sponsor-slot">Partner</div><div class="sponsor-slot">Partner</div><div class="sponsor-slot">Partner</div></div></div>
-    </div>
-  </section>
-
-  <!-- EVENT DETAILS -->
-  <section id="program">
-    <div class="deco-layer deco-scatter" aria-hidden="true">
-      <span class="brand-box b1"></span>
-      <span class="brand-box b2"></span>
-      <span class="brand-box b3"></span>
-      <span class="brand-box b4"></span>
-      <span class="brand-box b5"></span>
-    </div>
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow" style="color:var(--purple);">Event Details</p>
-        <h2 class="section-title">The Blueprint</h2>
-        <p class="section-p">The theme runs through the whole day — three motions instead of one track: what you build, what powers it, and how you lead with it. The same agenda runs in parallel at both the Laguna and Batangas venues.</p>
-      </div>
-
-      <div class="program-grid">
+        <div class="program-grid">
           <div class="agenda-list">
             <h3 class="program-heading">Agenda: Build. Power. Lead.</h3>
-            <div class="agenda-item"><div class="agenda-num">01</div><div><h3>Build — hands-on with Cloud &amp; AI</h3><p>Beginner-friendly technical talks and demos on AWS cloud fundamentals and applied AI — made for first-timers, not just the already-initiated.</p></div></div>
-            <div class="agenda-item"><div class="agenda-num">02</div><div><h3>Power — community &amp; representation</h3><p>Women in Tech spotlights, student success stories, and career pathway sessions that power a more diverse, self-assured builder community.</p></div></div>
-            <div class="agenda-item"><div class="agenda-num">03</div><div><h3>Lead — from participant to leader</h3><p>Panels, mentorship touchpoints, and community showcases that help students take the next step — organizing, mentoring, and leading their own chapters.</p></div></div>
+            <div class="agenda-item">
+              <div class="agenda-num">01</div>
+              <div>
+                <h3>Build — hands-on with Cloud &amp; AI</h3>
+                <p>Beginner-friendly technical talks and demos on AWS cloud fundamentals and applied AI — made for
+                  first-timers, not just the already-initiated.</p>
+              </div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">02</div>
+              <div>
+                <h3>Power — community &amp; representation</h3>
+                <p>Women in Tech spotlights, student success stories, and career pathway sessions that power a more
+                  diverse, self-assured builder community.</p>
+              </div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-num">03</div>
+              <div>
+                <h3>Lead — from participant to leader</h3>
+                <p>Panels, mentorship touchpoints, and community showcases that help students take the next step —
+                  organizing, mentoring, and leading their own chapters.</p>
+              </div>
+            </div>
           </div>
 
           <div class="schedule-container">
             <h3>Drafted Program Flow</h3>
             <div class="schedule">
-              <div class="sched-row"><div class="time">8:00 AM</div><div class="what"><b>Doors open &amp; registration</b><span>Badge pickup, community hub opens — both venues</span></div></div>
-              <div class="sched-row"><div class="time">9:00 AM</div><div class="what"><b>Opening &amp; keynote</b><span>Cloud × AI: Build. Power. Lead.</span></div></div>
-              <div class="sched-row"><div class="time">10:30 AM</div><div class="what"><b>Technical &amp; career tracks</b><span>Cloud fundamentals, applied AI, career development</span></div></div>
-              <div class="sched-row"><div class="time">1:00 PM</div><div class="what"><b>Women in Tech &amp; showcase</b><span>Panels and student-led lightning talks</span></div></div>
-              <div class="sched-row"><div class="time">2:30 PM</div><div class="what"><b>Sponsor &amp; community booths</b><span>Networking, photobooth, partner activities</span></div></div>
-              <div class="sched-row"><div class="time">4:15 PM</div><div class="what"><b>Closing &amp; recognition</b><span>Wrap-up and community group photo</span></div></div>
+              <div class="sched-row">
+                <div class="time">8:00 AM</div>
+                <div class="what"><b>Doors open &amp; registration</b><span>Badge pickup, community hub opens — both
+                    venues</span></div>
+              </div>
+              <div class="sched-row">
+                <div class="time">9:00 AM</div>
+                <div class="what"><b>Opening &amp; keynote</b><span>Cloud × AI: Build. Power. Lead.</span></div>
+              </div>
+              <div class="sched-row">
+                <div class="time">10:30 AM</div>
+                <div class="what"><b>Technical &amp; career tracks</b><span>Cloud fundamentals, applied AI, career
+                    development</span></div>
+              </div>
+              <div class="sched-row">
+                <div class="time">1:00 PM</div>
+                <div class="what"><b>Women in Tech &amp; showcase</b><span>Panels and student-led lightning talks</span>
+                </div>
+              </div>
+              <div class="sched-row">
+                <div class="time">2:30 PM</div>
+                <div class="what"><b>Sponsor &amp; community booths</b><span>Networking, photobooth, partner
+                    activities</span></div>
+              </div>
+              <div class="sched-row">
+                <div class="time">4:15 PM</div>
+                <div class="what"><b>Closing &amp; recognition</b><span>Wrap-up and community group photo</span></div>
+              </div>
             </div>
             <p class="sched-note">* Timing to be confirmed with speakers &amp; sponsors.</p>
           </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- INLINE VENUES -->
-  <section id="venue">
-    <div class="deco-layer deco-stair-bl" aria-hidden="true">
-      <span class="brand-box b1"></span>
-      <span class="brand-box b2"></span>
-      <span class="brand-box b3"></span>
-      <span class="brand-box b4"></span>
-      <span class="brand-box b5"></span>
-    </div>
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow" style="color:var(--green);">Venue</p>
-        <h2 class="section-title">One summit, two campuses</h2>
+    <!-- INLINE VENUES -->
+    <section id="venue">
+      <div class="deco-layer deco-stair-bl" aria-hidden="true">
+        <span class="brand-box b1"></span>
+        <span class="brand-box b2"></span>
+        <span class="brand-box b3"></span>
+        <span class="brand-box b4"></span>
+        <span class="brand-box b5"></span>
       </div>
-      <div class="sibling-note"><b>Companion event:</b> AWS SCD South Summit 2026 runs as two sibling events on the same day and time — one in Laguna, one in Batangas — each promoting and supporting the other as one CALABARZON-wide community.</div>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow" style="color:var(--green);">Venue</p>
+          <h2 class="section-title">One summit, two campuses</h2>
+        </div>
+        <div class="sibling-note"><b>Companion event:</b> AWS SCD South Summit 2026 runs as two sibling events on the
+          same day and time — one in Laguna, one in Batangas — each promoting and supporting the other as one
+          CALABARZON-wide community.</div>
 
-      <div class="venue-cards">
-        <div class="venue-inline-card">
+        <div class="venue-cards">
+          <div class="venue-inline-card">
             <div class="venue-inline-head">
-                <span class="tag">Laguna</span>
-                <h4>PUP – Biñan People's Center Auditorium</h4>
-                <span class="addr">📍 Biñan People's Center, Biñan, Laguna</span>
-                <p>Hosted by AWS SBG PUP – Biñan. Main summit stage and community hub across two floors.</p>
+              <span class="tag">Laguna</span>
+              <h4>PUP – Biñan People's Center Auditorium</h4>
+              <span class="addr">📍 Biñan People's Center, Biñan, Laguna</span>
+              <p>Hosted by AWS SBG PUP – Biñan. Main summit stage and community hub across two floors.</p>
             </div>
             <div class="venue-inline-floors">
-                <div><div class="flabel">Main Stage Floor</div><div class="fname">4th Floor</div></div>
-                <div><div class="flabel">Main Stage Room</div><div class="fname">Auditorium</div></div>
-                <div><div class="flabel">Community Hub Floor</div><div class="fname">2nd Floor</div></div>
-                <div><div class="flabel">Community Hub Space</div><div class="fname">SS Community Hub</div></div>
+              <div>
+                <div class="flabel">Main Stage Floor</div>
+                <div class="fname">4th Floor</div>
+              </div>
+              <div>
+                <div class="flabel">Main Stage Room</div>
+                <div class="fname">Auditorium</div>
+              </div>
+              <div>
+                <div class="flabel">Community Hub Floor</div>
+                <div class="fname">2nd Floor</div>
+              </div>
+              <div>
+                <div class="flabel">Community Hub Space</div>
+                <div class="fname">SS Community Hub</div>
+              </div>
             </div>
             <div class="venue-inline-map">
-                <iframe loading="lazy" src="https://www.google.com/maps?q=Bi%C3%B1an+People's+Center,+Bi%C3%B1an,+Laguna&output=embed" allowfullscreen></iframe>
+              <iframe loading="lazy"
+                src="https://www.google.com/maps?q=Bi%C3%B1an+People's+Center,+Bi%C3%B1an,+Laguna&output=embed"
+                allowfullscreen></iframe>
             </div>
             <div class="venue-inline-foot">
-                <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/search/?api=1&query=Bi%C3%B1an+People%27s+Center" target="_blank" rel="noopener">Open Google Maps</a>
+              <a class="btn btn-primary btn-sm"
+                href="https://www.google.com/maps/search/?api=1&query=Bi%C3%B1an+People%27s+Center" target="_blank"
+                rel="noopener">Open Google Maps</a>
             </div>
-        </div>
+          </div>
 
-        <div class="venue-inline-card">
+          <div class="venue-inline-card">
             <div class="venue-inline-head">
-                <span class="tag">Batangas</span>
-                <h4>Batangas University</h4>
-                <span class="addr">📍 Batangas University, Batangas City</span>
-                <p>Sibling venue running the same program in parallel for the Batangas tech community.</p>
+              <span class="tag">Batangas</span>
+              <h4>Batangas University</h4>
+              <span class="addr">📍 Batangas University, Batangas City</span>
+              <p>Sibling venue running the same program in parallel for the Batangas tech community.</p>
             </div>
             <div class="venue-inline-floors">
-                <div><div class="flabel">Main Stage Floor</div><div class="fname">Floor TBC</div></div>
-                <div><div class="flabel">Main Stage Room</div><div class="fname">Summit Stage</div></div>
-                <div><div class="flabel">Community Hub Floor</div><div class="fname">Floor TBC</div></div>
-                <div><div class="flabel">Community Hub Space</div><div class="fname">Community Hub</div></div>
+              <div>
+                <div class="flabel">Main Stage Floor</div>
+                <div class="fname">Floor TBC</div>
+              </div>
+              <div>
+                <div class="flabel">Main Stage Room</div>
+                <div class="fname">Summit Stage</div>
+              </div>
+              <div>
+                <div class="flabel">Community Hub Floor</div>
+                <div class="fname">Floor TBC</div>
+              </div>
+              <div>
+                <div class="flabel">Community Hub Space</div>
+                <div class="fname">Community Hub</div>
+              </div>
             </div>
             <div class="venue-inline-map">
-                <iframe loading="lazy" src="https://www.google.com/maps?q=Batangas+University,+Batangas+City&output=embed" allowfullscreen></iframe>
+              <iframe loading="lazy" src="https://www.google.com/maps?q=Batangas+University,+Batangas+City&output=embed"
+                allowfullscreen></iframe>
             </div>
             <div class="venue-inline-foot">
-                <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/search/?api=1&query=Batangas+University" target="_blank" rel="noopener">Open Google Maps</a>
+              <a class="btn btn-primary btn-sm"
+                href="https://www.google.com/maps/search/?api=1&query=Batangas+University" target="_blank"
+                rel="noopener">Open Google Maps</a>
             </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUOTE -->
-  <section class="quote-band">
-    <div class="wrap quote-inner">
-      <p class="quote-mark">"Cloud × AI: Build. Power. Lead. — three motions, one day, one community of student builders."</p>
-      <p class="quote-attr">— AWS SCD: South Summit 2026</p>
-    </div>
-  </section>
-
-  <!-- REGISTRATION -->
-  <section id="register" class="register-band grid-bg">
-    <div class="wrap register-inner">
-      <div>
-        <p class="eyebrow" style="color:#0B1526; opacity:.7;">Registration</p>
-        <h3>Scan the QR code to register for AWS SCD South Summit 2026</h3>
-        <p>Registration runs through Luma. Choose your venue — Laguna or Batangas — at checkout.</p>
-        <div class="register-cta-row"><a class="btn btn-light" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank" rel="noopener">Register on Luma →</a></div>
-        <p class="register-note">Template link &amp; QR — final Luma event URL to be swapped in once created.</p>
-      </div>
-      <div class="qr-box">
-        <svg class="qr-mock" viewBox="0 0 100 100" fill="#0B1526">
-          <rect x="4" y="4" width="26" height="26" fill="none" stroke="#0B1526" stroke-width="6"/><rect x="12" y="12" width="10" height="10"/>
-          <rect x="70" y="4" width="26" height="26" fill="none" stroke="#0B1526" stroke-width="6"/><rect x="78" y="12" width="10" height="10"/>
-          <rect x="4" y="70" width="26" height="26" fill="none" stroke="#0B1526" stroke-width="6"/><rect x="12" y="78" width="10" height="10"/>
-          <rect x="40" y="4" width="8" height="8"/><rect x="52" y="4" width="8" height="8"/>
-          <rect x="40" y="16" width="8" height="8"/><rect x="58" y="16" width="8" height="8"/>
-          <rect x="40" y="40" width="8" height="8"/><rect x="52" y="40" width="8" height="8"/><rect x="64" y="40" width="8" height="8"/>
-          <rect x="40" y="52" width="8" height="8"/><rect x="76" y="52" width="8" height="8"/>
-          <rect x="40" y="64" width="8" height="8"/><rect x="52" y="64" width="8" height="8"/><rect x="88" y="64" width="8" height="8"/>
-          <rect x="64" y="76" width="8" height="8"/><rect x="40" y="88" width="8" height="8"/><rect x="76" y="88" width="8" height="8"/><rect x="88" y="88" width="8" height="8"/>
-        </svg>
-        <span class="qr-label">lu.ma/aws-scd-south-summit-2026</span>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ================================================================= -->
-<!-- ============================ ABOUT PAGE =========================== -->
-<!-- ================================================================= -->
-<div class="page" id="page-about">
-
-  <section class="section-light grid-bg light page-intro">
-    <div class="deco-layer deco-corners" aria-hidden="true">
-      <span class="brand-box b1"></span>
-      <span class="brand-box b2"></span>
-      <span class="brand-box b3"></span>
-      <span class="brand-box b4"></span>
-      <span class="brand-box b5"></span>
-    </div>
-    <div class="wrap">
-      <div class="section-head"><p class="eyebrow">What is SCD?</p><h2 class="section-title">A student-first stage for Cloud &amp; AI</h2></div>
-      <div class="about-grid">
-        <div>
-          <p class="about-lead">AWS Student Community Day (SCD) is a <b>student-organized, AWS-supported</b> gathering that brings cloud and AI closer to students who don't yet see themselves in tech. South Summit 2026 is the CALABARZON edition — built by student leaders, for students.</p>
-          <p>Instead of another highly-technical conference, this summit balances real technical exposure with human-centered experiences: beginner-friendly cloud &amp; AI talks, Women in Tech empowerment sessions, career pathways, and a community hub built for networking — not just watching.</p>
-        </div>
-        <ul class="about-outcomes">
-          <li><span class="sq"></span><div><b>See the opportunity.</b> Get a clearer picture of where Cloud and AI careers actually start.</div></li>
-          <li><span class="sq"></span><div><b>Build real confidence.</b> Leave with the belief that you belong in this industry.</div></li>
-          <li><span class="sq"></span><div><b>Make real connections.</b> With fellow students, organizers, and industry partners.</div></li>
-          <li><span class="sq"></span><div><b>Leave with next steps.</b> Practical, doable actions — not just inspiration.</div></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="deco-layer deco-stagger" aria-hidden="true">
-      <span class="brand-box b1"></span>
-      <span class="brand-box b2"></span>
-      <span class="brand-box b3"></span>
-      <span class="brand-box b4"></span>
-      <span class="brand-box b5"></span>
-    </div>
-    <div class="wrap">
-      <div class="section-head"><p class="eyebrow">Speakers</p><h2 class="section-title">Meet the lineup</h2><p class="section-p">Tap any card to learn more about the speaker and their session.</p></div>
-      <div class="speaker-grid" id="speakerGridStatic"></div>
-    </div>
-  </section>
-
-  <section class="section-light grid-bg light">
-    <div class="wrap">
-      <div class="section-head"><p class="eyebrow" style="color:var(--orange);">Organizers</p><h2 class="section-title">AWS Student Builder Groups — South Luzon</h2><p class="section-p">Co-organized by 9 AWS SBG &amp; AWS LC chapters across CALABARZON. One community working together to make this summit happen.</p></div>
-      <div class="chapter-grid" id="chapterGrid"></div>
-    </div>
-  </section>
-
-</div>
-
-<!-- ================================================================= -->
-<!-- ============================ MERCH PAGE =========================== -->
-<!-- ================================================================= -->
-<div class="page" id="page-merch">
-  <section class="page-intro">
-    <div class="deco-layer deco-plus" aria-hidden="true">
-      <span class="brand-box b1"></span>
-      <span class="brand-box b2"></span>
-      <span class="brand-box b3"></span>
-      <span class="brand-box b4"></span>
-    </div>
-    <div class="wrap">
-      <div class="section-head"><p class="eyebrow">Merch</p><h2 class="section-title">Wear the summit</h2><p class="section-p">Official SCD South Summit merch — details drop closer to October 7. Click a card to preview.</p></div>
-      <div class="merch-explorer" id="merchExplorer" data-mode="grid">
-        <div class="merch-rail" id="merchRail"></div>
-        <div class="merch-spotlight" id="merchSpotlight" aria-live="polite">
-          <div class="merch-spotlight-placeholder">
-            <p>Select a merch item</p>
-            <span>Tap a card to zoom the preview</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
 
-<!-- ============ SPEAKER MODAL ============ -->
-<div class="modal-overlay" id="speakerModal" onclick="if(event.target===this) closeSpeakerModal()">
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeSpeakerModal()">✕</button>
-    <div class="s-modal-head">
-      <img class="chip-icon chip" src="awssbg-logo.svg" alt="">
-      <h3 id="smName">Speaker Name</h3>
-      <span class="role" id="smRole">Role · Company</span>
-    </div>
-    <div class="s-modal-body">
-      <h4>Session Information</h4>
-      <p id="smSession">Details regarding the speaker's session, what they will build, and the primary takeaways for students attending the summit.</p>
-      <h4>About the Speaker</h4>
-      <p id="smBio">A brief biography highlighting their journey into tech, their work with Cloud & AI, and why they are passionate about empowering the student community.</p>
-    </div>
-    <div class="s-modal-foot">
-      <a class="btn btn-ghost" id="smLinkedIn" href="#" target="_blank" rel="noopener">
-        <svg width="16" height="16" fill="currentColor"><use href="#li-icon"></use></svg> View LinkedIn Profile
-      </a>
+    <!-- QUOTE -->
+    <section class="quote-band">
+      <div class="wrap quote-inner">
+        <p class="quote-mark">"Cloud × AI: Build. Power. Lead. — three motions, one day, one community of student
+          builders."</p>
+        <p class="quote-attr">— AWS SCD: South Summit 2026</p>
+      </div>
+    </section>
+
+    <!-- REGISTRATION -->
+    <section id="register" class="register-band grid-bg">
+      <div class="wrap register-inner">
+        <div>
+          <p class="eyebrow" style="color:#0B1526; opacity:.7;">Registration</p>
+          <h3>Scan the QR code to register for AWS SCD South Summit 2026</h3>
+          <p>Registration runs through Luma. Choose your venue — Laguna or Batangas — at checkout.</p>
+          <div class="register-cta-row"><a class="btn btn-light" href="https://lu.ma/aws-scd-south-summit-2026"
+              target="_blank" rel="noopener">Register on Luma →</a></div>
+          <p class="register-note">Template link &amp; QR — final Luma event URL to be swapped in once created.</p>
+        </div>
+        <div class="qr-box">
+          <svg class="qr-mock" viewBox="0 0 100 100" fill="#0B1526">
+            <rect x="4" y="4" width="26" height="26" fill="none" stroke="#0B1526" stroke-width="6" />
+            <rect x="12" y="12" width="10" height="10" />
+            <rect x="70" y="4" width="26" height="26" fill="none" stroke="#0B1526" stroke-width="6" />
+            <rect x="78" y="12" width="10" height="10" />
+            <rect x="4" y="70" width="26" height="26" fill="none" stroke="#0B1526" stroke-width="6" />
+            <rect x="12" y="78" width="10" height="10" />
+            <rect x="40" y="4" width="8" height="8" />
+            <rect x="52" y="4" width="8" height="8" />
+            <rect x="40" y="16" width="8" height="8" />
+            <rect x="58" y="16" width="8" height="8" />
+            <rect x="40" y="40" width="8" height="8" />
+            <rect x="52" y="40" width="8" height="8" />
+            <rect x="64" y="40" width="8" height="8" />
+            <rect x="40" y="52" width="8" height="8" />
+            <rect x="76" y="52" width="8" height="8" />
+            <rect x="40" y="64" width="8" height="8" />
+            <rect x="52" y="64" width="8" height="8" />
+            <rect x="88" y="64" width="8" height="8" />
+            <rect x="64" y="76" width="8" height="8" />
+            <rect x="40" y="88" width="8" height="8" />
+            <rect x="76" y="88" width="8" height="8" />
+            <rect x="88" y="88" width="8" height="8" />
+          </svg>
+          <span class="qr-label">lu.ma/aws-scd-south-summit-2026</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- ============================ ABOUT PAGE =========================== -->
+  <!-- ================================================================= -->
+  <div class="page" id="page-about">
+
+    <section class="section-light grid-bg light page-intro">
+      <div class="deco-layer deco-corners" aria-hidden="true">
+        <span class="brand-box b1"></span>
+        <span class="brand-box b2"></span>
+        <span class="brand-box b3"></span>
+        <span class="brand-box b4"></span>
+        <span class="brand-box b5"></span>
+      </div>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">What is SCD?</p>
+          <h2 class="section-title">A student-first stage for Cloud &amp; AI</h2>
+        </div>
+        <div class="about-grid">
+          <div>
+            <p class="about-lead">AWS Student Community Day (SCD) is a <b>student-organized, AWS-supported</b> gathering
+              that brings cloud and AI closer to students who don't yet see themselves in tech. South Summit 2026 is the
+              CALABARZON edition — built by student leaders, for students.</p>
+            <p>Instead of another highly-technical conference, this summit balances real technical exposure with
+              human-centered experiences: beginner-friendly cloud &amp; AI talks, Women in Tech empowerment sessions,
+              career pathways, and a community hub built for networking — not just watching.</p>
+          </div>
+          <ul class="about-outcomes">
+            <li><span class="sq"></span>
+              <div><b>See the opportunity.</b> Get a clearer picture of where Cloud and AI careers actually start.</div>
+            </li>
+            <li><span class="sq"></span>
+              <div><b>Build real confidence.</b> Leave with the belief that you belong in this industry.</div>
+            </li>
+            <li><span class="sq"></span>
+              <div><b>Make real connections.</b> With fellow students, organizers, and industry partners.</div>
+            </li>
+            <li><span class="sq"></span>
+              <div><b>Leave with next steps.</b> Practical, doable actions — not just inspiration.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="deco-layer deco-stagger" aria-hidden="true">
+        <span class="brand-box b1"></span>
+        <span class="brand-box b2"></span>
+        <span class="brand-box b3"></span>
+        <span class="brand-box b4"></span>
+        <span class="brand-box b5"></span>
+      </div>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Speakers</p>
+          <h2 class="section-title">Meet the lineup</h2>
+          <p class="section-p">Tap any card to learn more about the speaker and their session.</p>
+        </div>
+        <div class="speaker-grid" id="speakerGridStatic"></div>
+      </div>
+    </section>
+
+    <section class="section-light grid-bg light">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow" style="color:var(--orange);">Organizers</p>
+          <h2 class="section-title">AWS Student Builder Groups — South Luzon</h2>
+          <p class="section-p">Co-organized by 9 AWS SBG &amp; AWS LC chapters across CALABARZON. One community working
+            together to make this summit happen.</p>
+        </div>
+        <div class="chapter-grid" id="chapterGrid"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- ============================ MERCH PAGE =========================== -->
+  <!-- ================================================================= -->
+  <div class="page" id="page-merch">
+    <section class="page-intro">
+      <div class="deco-layer deco-plus" aria-hidden="true">
+        <span class="brand-box b1"></span>
+        <span class="brand-box b2"></span>
+        <span class="brand-box b3"></span>
+        <span class="brand-box b4"></span>
+      </div>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Merch</p>
+          <h2 class="section-title">Wear the summit</h2>
+          <p class="section-p">Official SCD South Summit merch — details drop closer to October 7. Click a card to
+            preview.</p>
+        </div>
+        <div class="merch-explorer" id="merchExplorer" data-mode="grid">
+          <div class="merch-rail" id="merchRail"></div>
+          <div class="merch-spotlight" id="merchSpotlight" aria-live="polite">
+            <div class="merch-spotlight-placeholder">
+              <p>Select a merch item</p>
+              <span>Tap a card to zoom the preview</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ SPEAKER MODAL ============ -->
+  <div class="modal-overlay" id="speakerModal" onclick="if(event.target===this) closeSpeakerModal()">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeSpeakerModal()">✕</button>
+      <div class="s-modal-head">
+        <img class="chip-icon chip" src="awssbg-logo.svg" alt="">
+        <h3 id="smName">Speaker Name</h3>
+        <span class="role" id="smRole">Role · Company</span>
+      </div>
+      <div class="s-modal-body">
+        <h4>Session Information</h4>
+        <p id="smSession">Details regarding the speaker's session, what they will build, and the primary takeaways for
+          students attending the summit.</p>
+        <h4>About the Speaker</h4>
+        <p id="smBio">A brief biography highlighting their journey into tech, their work with Cloud & AI, and why they
+          are passionate about empowering the student community.</p>
+      </div>
+      <div class="s-modal-foot">
+        <a class="btn btn-ghost" id="smLinkedIn" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" fill="currentColor">
+            <use href="#li-icon"></use>
+          </svg> View LinkedIn Profile
+        </a>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="primer-edge primer-edge--bottom" aria-hidden="true">
-    <span class="brand-box pe-blue"></span>
-    <span class="brand-box pe-green"></span>
-    <span class="brand-box pe-purple"></span>
-    <span class="brand-box pe-orange"></span>
-    <span class="brand-box pe-purple-end"></span>
-  </div>
-  <div class="deco-layer deco-v" aria-hidden="true">
-    <span class="brand-box b4"></span>
-    <span class="brand-box b5"></span>
-  </div>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <div class="brand" style="display:flex; align-items:center; gap:10px;"><img class="chip" src="awssbg-logo.svg" alt=""><div class="brand-text">SCD SOUTH SUMMIT 2026<span>AWS STUDENT BUILDER GROUPS</span></div></div>
-        <p>Sibling summits by AWS Student Builder Groups across South Luzon (CALABARZON). Cloud × AI: Build. Power. Lead.</p>
-      </div>
-      <div class="foot-col"><h6>Explore</h6><button onclick="showPage('home')">Home</button><button onclick="showPage('about')">About</button><button onclick="showPage('merch')">Merch</button></div>
-      <div class="foot-col"><h6>Event</h6><a href="https://lu.ma/aws-scd-south-summit-2026" target="_blank" rel="noopener">Register</a></div>
-      <div class="foot-col"><h6>Connect</h6><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">LinkedIn</a><a href="#">Contact us</a></div>
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="primer-edge primer-edge--bottom" aria-hidden="true">
+      <span class="brand-box pe-blue"></span>
+      <span class="brand-box pe-green"></span>
+      <span class="brand-box pe-purple"></span>
+      <span class="brand-box pe-orange"></span>
+      <span class="brand-box pe-purple-end"></span>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 AWS Student Builder Groups · South Luzon</span>
+    <div class="deco-layer deco-v" aria-hidden="true">
+      <span class="brand-box b4"></span>
+      <span class="brand-box b5"></span>
     </div>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <div class="brand" style="display:flex; align-items:center; gap:10px;"><img class="chip" src="awssbg-logo.svg"
+              alt="">
+            <div class="brand-text">SCD SOUTH SUMMIT 2026<span>AWS STUDENT BUILDER GROUPS</span></div>
+          </div>
+          <p>Sibling summits by AWS Student Builder Groups across South Luzon (CALABARZON). Cloud × AI: Build. Power.
+            Lead.</p>
+        </div>
+        <div class="foot-col">
+          <h6>Explore</h6><button onclick="showPage('home')">Home</button><button
+            onclick="showPage('about')">About</button><button onclick="showPage('merch')">Merch</button>
+        </div>
+        <div class="foot-col">
+          <h6>Event</h6><a href="https://lu.ma/aws-scd-south-summit-2026" target="_blank" rel="noopener">Register</a>
+        </div>
+        <div class="foot-col">
+          <h6>Connect</h6><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">LinkedIn</a><a href="#">Contact
+            us</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 AWS Student Builder Groups · South Luzon</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="proto-badge">DRAFT PROTOTYPE — v5 · theme</div>
+
+  <div class="amazon-q-wrap" id="amazonQWrap">
+    <div class="amazon-q-bubble" id="amazonQBubble" role="status" hidden>
+      <p>Try <b>Amazon Q</b> for questions &amp; clarifications about the event.</p>
+      <button type="button" class="amazon-q-bubble-cta" id="amazonQBubbleCta">Ask now</button>
+    </div>
+    <button type="button" class="amazon-q-bot" id="amazonQBot" title="Ask Amazon Q"
+      aria-label="Ask Amazon Q about the event">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <use href="#chat-icon"></use>
+      </svg>
+    </button>
   </div>
-</footer>
 
-<div class="proto-badge">DRAFT PROTOTYPE — v5 · theme</div>
-
-<div class="amazon-q-wrap" id="amazonQWrap">
-  <div class="amazon-q-bubble" id="amazonQBubble" role="status" hidden>
-    <p>Try <b>Amazon Q</b> for questions &amp; clarifications about the event.</p>
-    <button type="button" class="amazon-q-bubble-cta" id="amazonQBubbleCta">Ask now</button>
+  <div class="sticky-cta">
+    <div class="cta-label">Oct 7, 2026 · Laguna &amp; Batangas<b>AWS SCD South Summit</b></div>
+    <a class="btn btn-primary" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank"
+      rel="noopener">Register</a>
   </div>
-  <button type="button" class="amazon-q-bot" id="amazonQBot" title="Ask Amazon Q" aria-label="Ask Amazon Q about the event">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#chat-icon"></use></svg>
-  </button>
-</div>
 
-<div class="sticky-cta">
-  <div class="cta-label">Oct 7, 2026 · Laguna &amp; Batangas<b>AWS SCD South Summit</b></div>
-  <a class="btn btn-primary" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank" rel="noopener">Register</a>
-</div>
-
-<script>
-  /* ---------- THEME ---------- */
-  function getTheme() {
-    return document.documentElement.getAttribute('data-theme') || 'light';
-  }
-
-  function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    try { localStorage.setItem('scd-theme', theme); } catch (e) {}
-    document.querySelectorAll('.theme-toggle').forEach(btn => {
-      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-      btn.setAttribute('title', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-    });
-  }
-
-  function toggleTheme() {
-    setTheme(getTheme() === 'dark' ? 'light' : 'dark');
-  }
-
-  document.querySelectorAll('[data-theme-toggle], #themeToggle').forEach(btn => {
-    btn.addEventListener('click', toggleTheme);
-  });
-  setTheme(getTheme());
-
-  /* ---------- PAGE ROUTING ---------- */
-  const nav = document.getElementById('siteNav');
-  const siteHeader = document.querySelector('.site-header');
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const mobilePanel = document.getElementById('mobilePanel');
-
-  function updateNavSolid() {
-    const page = document.documentElement.getAttribute('data-page') || 'home';
-    const scrolledDown = window.scrollY > 150;
-    /* About/Merch open on light surfaces — keep solid nav so brand + links stay visible */
-    const needsSolid = page !== 'home' || scrolledDown;
-    nav.classList.toggle('scrolled', needsSolid);
-    /* Hide top-right AWS logo once the page is scrolled */
-    if (siteHeader) siteHeader.classList.toggle('is-scrolled', scrolledDown);
-  }
-
-  function showPage(name){
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    document.documentElement.setAttribute('data-page', name);
-    document.querySelectorAll('.navbtn, #mobilePanel [data-page]').forEach(b => {
-      b.classList.toggle('active', b.dataset.page === name);
-    });
-    window.scrollTo({top:0, behavior:'instant'});
-    updateNavSolid();
-    mobilePanel.classList.remove('open');
-    hamburgerBtn.classList.remove('open');
-    hamburgerBtn.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-
-  document.documentElement.setAttribute('data-page', 'home');
-  window.addEventListener('scroll', updateNavSolid);
-  updateNavSolid();
-
-  hamburgerBtn.addEventListener('click', () => {
-    const isOpen = mobilePanel.classList.toggle('open');
-    hamburgerBtn.classList.toggle('open', isOpen);
-    hamburgerBtn.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  /* ---------- SPEAKER DATA & MODAL ---------- */
-  const speakerColors = ['blue','green','pink'];
-
-  function openSpeakerModal(name, role) {
-      document.getElementById('smName').textContent = name || "Speaker Name";
-      document.getElementById('smRole').textContent = role || "Speaker Role · Company";
-      document.getElementById('speakerModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-  }
-
-  function closeSpeakerModal() {
-      document.getElementById('speakerModal').classList.remove('open');
-      document.body.style.overflow = '';
-  }
-
-  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeSpeakerModal(); });
-
-  function speakerCard(i, isStatic){
-    const c = speakerColors[i % 3];
-    const name = `Speaker ${i+1}`;
-    const role = "Cloud Engineer · AWS Partner";
-    return `<div class="speaker-card ${c}" onclick="openSpeakerModal('${name}', '${role}')">
-      <div class="stair"><span class="c1"></span><span class="c2"></span></div>
-      <div class="sc-top"><img class="chip" src="awssbg-logo.svg" alt=""><span class="tbd">TBA</span></div>
-      <div class="sc-body">
-        <h5>Session Title Placeholder</h5>
-        <span class="role">${name} · ${role}</span>
-        <p>A brief intro about what this speaker will cover during their slot at the summit.</p>
-        ${isStatic ? `<div class="sc-linkedin"><div class="li-badge"><svg width="12" height="12"><use href="#li-icon"></use></svg></div> View profile</div>` : ''}
-      </div>
-    </div>`;
-  }
-
-  (function(){
-    const cards = Array.from({length:6}, (_,i)=>speakerCard(i,false)).join('');
-    document.getElementById('marqueeTrack').innerHTML = cards + cards;
-    document.getElementById('speakerGridStatic').innerHTML = Array.from({length:8}, (_,i)=>speakerCard(i,true)).join('');
-  })();
-
-  /* ---------- MERCH DATA ---------- */
-  const merchItems = [
-    { name:'SCD Hoodie', color:'blue', blurb:'Heavyweight fleece with summit mark. Soft drop closer to event day.', icon:'<path d="M8 4l4 2 4-2 3 4-3 2v10H5V10L2 8z"/>' },
-    { name:'Build.Power.Lead Tee', color:'green', blurb:'Everyday tee with the three-motion theme lockup.', icon:'<path d="M7 4h10l2 4-3 2v10H8V10L5 8z"/>' },
-    { name:'Enamel Pin Set', color:'pink', blurb:'Collectible chip + grid pins for bags and lanyards.', icon:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.4"/>' },
-    { name:'Tote Bag', color:'blue', blurb:'Carry-all tote for community hub days and booths.', icon:'<rect x="4" y="8" width="16" height="12" rx="1.5"/><path d="M8 8V6a4 4 0 018 0v2"/>' },
-    { name:'Sticker Sheet', color:'green', blurb:'Laptop-ready stickers from the South Summit primer.', icon:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/>' },
-    { name:'Lanyard', color:'pink', blurb:'Badge lanyard for twin-venue check-in.', icon:'<path d="M12 3v6M9 9h6l2 12H7L9 9z"/>' }
-  ];
-
-  const merchExplorer = document.getElementById('merchExplorer');
-  const merchRail = document.getElementById('merchRail');
-  const merchSpotlight = document.getElementById('merchSpotlight');
-  let merchActive = -1;
-
-  function merchCardHTML(m, i) {
-    return `<button type="button" class="merch-card ${m.color}" data-merch-index="${i}" aria-pressed="false">
-      <div class="stair"><span class="c1"></span><span class="c2"></span></div>
-      <div class="merch-top"><img class="chip" src="awssbg-logo.svg" alt=""><span class="merch-badge">SOON</span></div>
-      <div class="merch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0B1526" stroke-width="1.4">${m.icon}</svg></div>
-      <div class="merch-body"><h5>${m.name}</h5><span>Coming soon</span></div>
-    </button>`;
-  }
-
-  function merchSpotlightHTML(m) {
-    return `<div class="merch-spotlight-card ${m.color}">
-      <div class="stair"><span class="c1"></span><span class="c2"></span><span class="c3"></span></div>
-      <div class="merch-spotlight-top">
-        <img class="chip" src="awssbg-logo.svg" alt="">
-        <span class="merch-badge">SOON</span>
-      </div>
-      <div class="merch-spotlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0B1526" stroke-width="1.4">${m.icon}</svg></div>
-      <div class="merch-spotlight-body">
-        <h3>${m.name}</h3>
-        <p>${m.blurb}</p>
-        <span>Coming soon · SCD South Summit 2026</span>
-      </div>
-      <button type="button" class="merch-spotlight-close btn btn-ghost" id="merchCloseFocus">Show all</button>
-    </div>`;
-  }
-
-  function renderMerchRail() {
-    merchRail.innerHTML = merchItems.map(merchCardHTML).join('');
-  }
-
-  function setMerchFocus(index) {
-    merchActive = index;
-    const m = merchItems[index];
-    merchExplorer.dataset.mode = 'focus';
-    merchExplorer.classList.add('is-animating');
-    merchSpotlight.innerHTML = merchSpotlightHTML(m);
-    merchRail.querySelectorAll('.merch-card').forEach((card, i) => {
-      const on = i === index;
-      card.classList.toggle('is-selected', on);
-      card.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
-    requestAnimationFrame(() => {
-      merchSpotlight.classList.add('is-visible');
-      merchExplorer.classList.remove('is-animating');
-    });
-    const closeBtn = document.getElementById('merchCloseFocus');
-    if (closeBtn) closeBtn.addEventListener('click', clearMerchFocus);
-  }
-
-  function clearMerchFocus() {
-    merchActive = -1;
-    merchExplorer.dataset.mode = 'grid';
-    merchSpotlight.classList.remove('is-visible');
-    merchSpotlight.innerHTML = `<div class="merch-spotlight-placeholder"><p>Select a merch item</p><span>Tap a card to zoom the preview</span></div>`;
-    merchRail.querySelectorAll('.merch-card').forEach(card => {
-      card.classList.remove('is-selected');
-      card.setAttribute('aria-pressed', 'false');
-    });
-  }
-
-  renderMerchRail();
-  merchRail.addEventListener('click', (e) => {
-    const card = e.target.closest('.merch-card');
-    if (!card) return;
-    const index = Number(card.dataset.merchIndex);
-    if (Number.isNaN(index)) return;
-    if (merchActive === index && merchExplorer.dataset.mode === 'focus') {
-      clearMerchFocus();
-      return;
-    }
-    setMerchFocus(index);
-  });
-
-  /* ---------- CHAPTER ORGANIZERS ---------- */
-  const chapters = [
-    { name: 'AWS SBG – Philippine Christian University Cavite', uni: 'Cavite' },
-    { name: 'AWS SBG – Mapúa Malayan Digital College', uni: 'Mapúa Malayan Digital College' },
-    { name: 'AWS SBG – University of Perpetual Help System Laguna – Biñan', uni: 'Biñan, Laguna' },
-    { name: 'AWS SBG – Cavite State University – Main', uni: 'CvSU Main Campus' },
-    { name: 'AWS SBG – Pamantasan ng Cabuyao', uni: 'University of Cabuyao' },
-    { name: 'AWS SBG – Polytechnic University of the Philippines – Biñan', uni: 'PUP Biñan' },
-    { name: 'AWS Learning Club – Polar', uni: 'PUP Santa Rosa' },
-    { name: 'AWS SBG – Aeris', uni: 'City College of Calamba' },
-    { name: 'AWS SBG – University of Batangas', uni: 'Batangas' }
-  ];
-  document.getElementById('chapterGrid').innerHTML = chapters.map(c => `
-    <div class="chapter-card">
-      <div class="mark"><img class="chip" src="awssbg-logo.svg" alt=""></div>
-      <div><h5>${c.name}</h5><span>${c.uni}</span></div>
-      <div class="chapter-socials">
-        <a href="#" aria-label="Facebook"><svg width="14" height="14"><use href="#fb-icon"></use></svg></a>
-        <a href="#" aria-label="LinkedIn"><svg width="14" height="14"><use href="#li-icon"></use></svg></a>
-      </div>
-    </div>`).join('');
-
-  /* ---------- COUNTDOWN ---------- */
-  const target = new Date('2026-10-07T08:00:00+08:00').getTime();
-  function tick(){
-    const diff = Math.max(target - Date.now(), 0);
-    document.getElementById('cd-days').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
-    document.getElementById('cd-mins').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-    document.getElementById('cd-secs').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
-  }
-  tick(); setInterval(tick, 1000);
-
-  /* ---------- AMAZON Q TIP BUBBLE ---------- */
-  const aqBubble = document.getElementById('amazonQBubble');
-  const aqBot = document.getElementById('amazonQBot');
-  const aqBubbleCta = document.getElementById('amazonQBubbleCta');
-
-  /* Clear any older persistent dismiss state */
-  try { localStorage.removeItem('scd-aq-bubble'); } catch (e) {}
-
-  function hideAqBubble() {
-    aqBubble.hidden = true;
-  }
-
-  function openAmazonQ() {
-    hideAqBubble();
-    /* Hook for real Amazon Q widget when available */
-    aqBot.classList.add('is-active');
-    aqBot.setAttribute('aria-pressed', 'true');
-  }
-
-  /* Show on every page load / refresh; hide only after click this session */
-  aqBubble.hidden = false;
-
-  aqBot.addEventListener('click', openAmazonQ);
-  aqBubbleCta.addEventListener('click', openAmazonQ);
-  aqBubble.addEventListener('click', (e) => {
-    if (e.target === aqBubbleCta) return;
-    openAmazonQ();
-  });
-</script>
+  <script type="module" src="assets/js/main.js"></script>
 
 </body>
+
 </html>
