@@ -507,7 +507,7 @@ html[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
 }
 
 @media (max-width: 720px) {
-  .deco-layer .brand-box:nth-child(n+4) {
+  .deco-layer .brand-box {
     display: none;
   }
 }
