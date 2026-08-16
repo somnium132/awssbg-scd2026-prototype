@@ -17,9 +17,10 @@
   --grid-size: 52px;
   --grid-line: 1px;
 
-  /* Typography — event primer monospace */
+  /* Typography — original event monospace typography */
   --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
   --font-sans: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
 
   /* Layout */
   --container: 1280px;
@@ -43,11 +44,11 @@ html[data-theme="light"] {
   --cloud: #F5F7FB;
   --text: #0B1526;
   --text-strong: #000000;
-  --muted: #5B6584;
-  --muted-2: #8B96B3;
+  --muted: #3D4868;
+  --muted-2: #677494;
 
-  --line: rgba(11, 21, 38, 0.09);
-  --line-strong: rgba(11, 21, 38, 0.14);
+  --line: rgba(11, 21, 38, 0.06);
+  --line-strong: rgba(11, 21, 38, 0.09);
 
   --nav-bg: rgba(255, 255, 255, 0.92);
   --nav-link: #5B6584;
@@ -100,11 +101,11 @@ html[data-theme="dark"] {
   --cloud: #1A2138;
   --text: #F5F7FB;
   --text-strong: #FFFFFF;
-  --muted: #A8B0C7;
-  --muted-2: #8B96B3;
+  --muted: #CBD5E1;
+  --muted-2: #94A3B8;
 
-  --line: rgba(255, 255, 255, 0.08);
-  --line-strong: rgba(255, 255, 255, 0.14);
+  --line: rgba(255, 255, 255, 0.06);
+  --line-strong: rgba(255, 255, 255, 0.09);
 
   --nav-bg: rgba(18, 24, 42, 0.92);
   --nav-link: #A8B0C7;

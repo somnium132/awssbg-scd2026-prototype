@@ -12,8 +12,21 @@ export function openSpeakerModal(speaker) {
 
     if (!modal) return;
 
-    document.getElementById('smName').textContent = speaker?.name || "Speaker Name";
-    document.getElementById('smRole').textContent = speaker?.role || "Speaker Role | Company";
+    const name = speaker?.name || "Speaker Name";
+    const role = speaker?.role || "Speaker Role · Company";
+    const status = speaker?.status || (speaker?.sessionTitle?.toLowerCase().includes('keynote') ? 'KEYNOTE' : (speaker?.sessionTitle?.toLowerCase().includes('panel') ? 'PANEL' : 'SPEAKER'));
+
+    const nameEl = document.getElementById('smName');
+    if (nameEl) nameEl.textContent = name;
+
+    const roleEl = document.getElementById('smRole');
+    if (roleEl) roleEl.textContent = role;
+
+    const badgeEl = document.getElementById('smBadge');
+    if (badgeEl) {
+        badgeEl.textContent = status;
+        badgeEl.className = `sc-status-badge ${status.toLowerCase()}`;
+    }
 
     const sessionEl = document.getElementById('smSession');
     if (sessionEl) {
@@ -22,18 +35,18 @@ export function openSpeakerModal(speaker) {
 
     const bioEl = document.getElementById('smBio');
     if (bioEl) {
-        bioEl.textContent = speaker?.abstract || "A brief biography highlighting their journey into tech, their work with Cloud & AI, and community contributions.";
+        bioEl.innerHTML = speaker?.abstract || "A brief biography highlighting their journey into tech, their work with Cloud & AI, and community contributions.";
     }
 
-    const modalAvatar = modal.querySelector('.s-modal-head img, .chip');
-    if (modalAvatar) {
-        modalAvatar.src = speaker?.picUrl || 'awssbg-logo.svg';
-        modalAvatar.alt = speaker?.name || 'Speaker';
+    const avatarEl = document.getElementById('smAvatar');
+    if (avatarEl) {
+        avatarEl.src = speaker?.picUrl || 'assets/South%20Summit%20logo.svg';
+        avatarEl.alt = name;
     }
 
     const linkedInBtn = document.getElementById('smLinkedIn');
     if (linkedInBtn) {
-        linkedInBtn.href = speaker?.linkedInUrl || `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(speaker?.name || '')}`;
+        linkedInBtn.href = speaker?.linkedInUrl || `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(name)}`;
     }
 
     modal.classList.add('open');
@@ -50,7 +63,7 @@ function speakerCardHTML(speaker, index, isStatic = false) {
     const role = speaker.role || 'Cloud Engineer · AWS Partner';
     const abstract = speaker.abstract || 'A brief intro about what this speaker will cover during their slot at the summit.';
     const status = speaker.status || 'TBA';
-    const avatar = speaker.picUrl || 'awssbg-logo.svg';
+    const avatar = speaker.picUrl || 'assets/South%20Summit%20logo.svg';
     const linkedin = speaker.linkedInUrl || `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(name)}`;
 
     return `
@@ -85,16 +98,49 @@ function speakerCardHTML(speaker, index, isStatic = false) {
 export function initSpeakers() {
     const marqueeTrack = document.getElementById('marqueeTrack');
     const speakerGrid = document.getElementById('speakerGridStatic');
+    const keynotesGrid = document.getElementById('speakerGridKeynotes');
+    const panelsGrid = document.getElementById('speakerGridPanels');
+    const sessionsGrid = document.getElementById('speakerGridSessions');
     const modal = document.getElementById('speakerModal');
 
-    //render marquee Track
+    // Categorize speakers
+    const keynotes = [];
+    const panels = [];
+    const sessions = [];
+
+    speakers.forEach((s, idx) => {
+        const item = { ...s, originalIndex: idx };
+        if (s.status === 'KEYNOTE' || (s.sessionTitle && s.sessionTitle.toLowerCase().includes('keynote'))) {
+            keynotes.push(item);
+        } else if (s.status === 'PANEL' || (s.sessionTitle && s.sessionTitle.toLowerCase().includes('panel'))) {
+            panels.push(item);
+        } else {
+            sessions.push(item);
+        }
+    });
+
+    // Render marquee Track (all speakers)
     if (marqueeTrack) {
         const cards = speakers.map((s, i) => speakerCardHTML(s, i, false)).join('');
         marqueeTrack.innerHTML = cards + cards;
     }
 
+    // Render static grid (if present on any page)
     if (speakerGrid) {
         speakerGrid.innerHTML = speakers.map((s, i) => speakerCardHTML(s, i, true)).join('');
+    }
+
+    // Render categorized grids on About page
+    if (keynotesGrid) {
+        keynotesGrid.innerHTML = keynotes.map((s, i) => speakerCardHTML(s, s.originalIndex, true)).join('');
+    }
+
+    if (panelsGrid) {
+        panelsGrid.innerHTML = panels.map((s, i) => speakerCardHTML(s, s.originalIndex, true)).join('');
+    }
+
+    if (sessionsGrid) {
+        sessionsGrid.innerHTML = sessions.map((s, i) => speakerCardHTML(s, s.originalIndex, true)).join('');
     }
 
     function handleCardClick(e) {
@@ -108,8 +154,11 @@ export function initSpeakers() {
 
     if (marqueeTrack) marqueeTrack.addEventListener('click', handleCardClick);
     if (speakerGrid) speakerGrid.addEventListener('click', handleCardClick);
+    if (keynotesGrid) keynotesGrid.addEventListener('click', handleCardClick);
+    if (panelsGrid) panelsGrid.addEventListener('click', handleCardClick);
+    if (sessionsGrid) sessionsGrid.addEventListener('click', handleCardClick);
 
-    //handle close and ESC key
+    // Handle close and ESC key
     if (modal) {
         modal.addEventListener('click', e => {
             if (e.target === modal || e.target.closest('.modal-close')) {
@@ -124,6 +173,5 @@ export function initSpeakers() {
 
     window.openSpeakerModal = openSpeakerModal;
     window.closeSpeakerModal = closeSpeakerModal;
-
 }
 
