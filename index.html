@@ -25,40 +25,35 @@
 
 <body>
 
-  <div class="site-header">
-    <img class="nav-aws-logo" src="assets/amazon-aws-logo.png" alt="AWS">
-    <header class="nav" id="siteNav">
-      <div class="nav-inner">
-        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu"
-          aria-expanded="false"><span></span></button>
-        <button class="brand" onclick="showPage('home')">
-          <img class="chip" src="assets/South%20Summit%20logo.svg" alt="AWS Student Community Day: South Summit 2026">
-          <div class="brand-text">AWS SCD: SS 2026<span>AWS STUDENT BUILDER GROUPS</span></div>
+  <header class="nav" id="siteNav">
+    <div class="nav-inner">
+      <button class="brand" onclick="showPage('home')">
+        <img class="chip" src="assets/South%20Summit%20logo.svg" alt="AWS Student Community Day: South Summit 2026">
+        <div class="brand-text">AWS SCD: SS 2026<span>AWS STUDENT BUILDER GROUPS</span></div>
+      </button>
+      <nav class="links">
+        <button class="navbtn active" data-page="home" onclick="showPage('home')">Home</button>
+        <button class="navbtn" data-page="about" onclick="showPage('about')">About</button>
+        <button class="navbtn" data-page="merch" onclick="showPage('merch')">Merch</button>
+      </nav>
+      <div class="nav-cta">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode"
+          title="Toggle theme">
+          <span class="theme-toggle-track">
+            <svg class="icon-sun" aria-hidden="true">
+              <use href="#icon-sun"></use>
+            </svg>
+            <svg class="icon-moon" aria-hidden="true">
+              <use href="#icon-moon"></use>
+            </svg>
+          </span>
+          <span class="theme-toggle-thumb"></span>
         </button>
-        <nav class="links">
-          <button class="navbtn active" data-page="home" onclick="showPage('home')">Home</button>
-          <button class="navbtn" data-page="about" onclick="showPage('about')">About</button>
-          <button class="navbtn" data-page="merch" onclick="showPage('merch')">Merch</button>
-        </nav>
-        <div class="nav-cta">
-          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode"
-            title="Toggle theme">
-            <span class="theme-toggle-track">
-              <svg class="icon-sun" aria-hidden="true">
-                <use href="#icon-sun"></use>
-              </svg>
-              <svg class="icon-moon" aria-hidden="true">
-                <use href="#icon-moon"></use>
-              </svg>
-            </span>
-            <span class="theme-toggle-thumb"></span>
-          </button>
-          <a class="btn btn-primary nav-cta-btn" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank"
-            rel="noopener">Register Now</a>
-        </div>
+        <a class="btn btn-primary nav-cta-btn" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank"
+          rel="noopener">Register Now</a>
       </div>
-    </header>
-  </div>
+    </div>
+  </header>
 
   <svg class="defs" aria-hidden="true">
     <symbol id="chip-icon" viewBox="0 0 70 70">
@@ -848,11 +843,39 @@
     </div>
   </div>
 
-  <div class="sticky-cta">
-    <div class="cta-label">Oct 7, 2026 · Laguna &amp; Batangas<b>AWS SCD South Summit</b></div>
-    <a class="btn btn-primary" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank"
-      rel="noopener">Register</a>
-  </div>
+  <!-- FLOATING MOBILE DOCK BAR -->
+  <nav class="mobile-dock-nav" id="mobileDock" aria-label="Mobile Navigation">
+    <div class="mobile-dock-inner">
+      <button class="dock-tab active" data-page="home" onclick="showPage('home')" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-icon">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Home</span>
+      </button>
+      <button class="dock-tab" data-page="about" onclick="showPage('about')" aria-label="About">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-icon">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span>About</span>
+      </button>
+      <button class="dock-tab" data-page="merch" onclick="showPage('merch')" aria-label="Merch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-icon">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <span>Merch</span>
+      </button>
+      <div class="dock-divider"></div>
+      <a class="dock-register-btn" href="https://lu.ma/aws-scd-south-summit-2026" target="_blank" rel="noopener">
+        Register
+      </a>
+    </div>
+  </nav>
 
   <script type="module" src="assets/js/main.js"></script>
 
