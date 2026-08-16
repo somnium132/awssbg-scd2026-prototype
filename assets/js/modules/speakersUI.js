@@ -17,12 +17,23 @@ export function openSpeakerModal(speaker) {
 
     const sessionEl = document.getElementById('smSession');
     if (sessionEl) {
-        sessionEl.textContent = speaker?.abstract || "Details about the speaker's session and discussion.";
+        sessionEl.textContent = speaker?.sessionTitle ? `${speaker.sessionTitle}` : "Details regarding the presentation and discussion.";
     }
 
-    const modalAvatar = modal.querySelector('.s-modal-head img, .chip-avatar img');
+    const bioEl = document.getElementById('smBio');
+    if (bioEl) {
+        bioEl.textContent = speaker?.abstract || "A brief biography highlighting their journey into tech, their work with Cloud & AI, and community contributions.";
+    }
+
+    const modalAvatar = modal.querySelector('.s-modal-head img, .chip');
     if (modalAvatar) {
         modalAvatar.src = speaker?.picUrl || 'awssbg-logo.svg';
+        modalAvatar.alt = speaker?.name || 'Speaker';
+    }
+
+    const linkedInBtn = document.getElementById('smLinkedIn');
+    if (linkedInBtn) {
+        linkedInBtn.href = speaker?.linkedInUrl || `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(speaker?.name || '')}`;
     }
 
     modal.classList.add('open');
@@ -37,29 +48,35 @@ function speakerCardHTML(speaker, index, isStatic = false) {
     const color = colors[index % colors.length];
     const name = speaker.name || `Speaker ${index + 1}`;
     const role = speaker.role || 'Cloud Engineer · AWS Partner';
-    const title = speaker.sessionTitle || 'Session Title Placeholder';
     const abstract = speaker.abstract || 'A brief intro about what this speaker will cover during their slot at the summit.';
     const status = speaker.status || 'TBA';
     const avatar = speaker.picUrl || 'awssbg-logo.svg';
+    const linkedin = speaker.linkedInUrl || `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(name)}`;
 
     return `
     <div class="speaker-card ${color}" data-speaker-index="${index}">
-      <div class="stair"><span class="c1"></span><span class="c2"></span></div>
-      <div class="sc-top">
-        <img class="chip" src="${avatar}" alt="${name}">
-        <span class="tbd">${status}</span>
+      <div class="sc-img-wrap">
+        <img class="sc-portrait" src="${avatar}" alt="${name}" loading="lazy">
+        <div class="sc-fade-overlay"></div>
+        <span class="sc-status-badge ${status.toLowerCase()}">${status}</span>
+        <a class="sc-li-overlay-btn" href="${linkedin}" target="_blank" rel="noopener" title="View ${name} on LinkedIn" onclick="event.stopPropagation()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.67a1.64 1.64 0 0 0-1.64 1.63c0 .91.73 1.64 1.64 1.64s1.64-.73 1.64-1.64c0-.9-.73-1.63-1.64-1.63Z"/>
+          </svg>
+        </a>
       </div>
-      <div class="sc-body">
-        <h5>${title}</h5>
-        <span class="role">${name} · ${role}</span>
-        <p>${abstract}</p>
-        ${isStatic ? `
-          <div class="sc-linkedin">
-            <div class="li-badge">
-              <svg width="12" height="12"><use href="#li-icon"></use></svg>
-            </div>
-            View profile
-          </div>` : ''}
+      <div class="sc-info">
+        <h4 class="sc-name">${name}</h4>
+        <span class="sc-role">${role}</span>
+        <p class="sc-bio">${abstract}</p>
+        <div class="sc-card-foot">
+          <a class="sc-li-link" href="${linkedin}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.67a1.64 1.64 0 0 0-1.64 1.63c0 .91.73 1.64 1.64 1.64s1.64-.73 1.64-1.64c0-.9-.73-1.63-1.64-1.63Z"/>
+            </svg>
+            LinkedIn Profile
+          </a>
+        </div>
       </div>
     </div>
   `;
