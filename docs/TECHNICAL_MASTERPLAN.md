@@ -30,7 +30,7 @@ awssbg-scd2026-prototype/
 ├── theme.css                    # Design system tokens, color palettes & spatial grid
 ├── README.md                    # Primary GitHub repository landing page
 ├── CHANGELOG.md                 # Developer version history & prompt updates
-├── docs/                        # 📚 Documentation Hub
+├── docs/                        # Documentation Hub
 │   ├── TECHNICAL_MASTERPLAN.md  # Technical Master Plan & Architecture reference
 │   ├── FRAMEWORK_GUIDE.md       # Developer onboarding & content guide
 │   └── EVENT_GUIDELINES.md      # Event operational guidelines & timeline
@@ -44,12 +44,12 @@ awssbg-scd2026-prototype/
     │   └── sponsors/            # Sponsor logos
     └── js/
         ├── main.js              # Central entry point (bootstraps all modules)
-        ├── data/                # 📊 Pure Data Layer (Content Objects)
+        ├── data/                # Pure Data Layer (Content Objects)
         │   ├── speakers.js      # Speaker details & talks
         │   ├── merch.js         # Merchandise catalog
         │   ├── chapters.js      # University student builder groups
         │   └── sponsors.js      # Sponsor tiers & partner links
-        └── modules/             # ⚙️ Functional UI Presentation Layer
+        └── modules/             # Functional UI Presentation Layer
             ├── theme.js         # Light/Dark mode toggling & localStorage
             ├── routing.js       # SPA client-side router & mobile menu
             ├── countdown.js     # Real-time event countdown timer
